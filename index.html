@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariage · Jaurelle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ivory: #faf7f2;
+      --cream: #f2ede4;
+      --gold: #b89a6a;
+      --gold-light: #d4b896;
+      --dark: #2c2416;
+      --text: #4a3f2e;
+      --text-light: #7a6e5e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--ivory);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 20px 24px;
+      background: linear-gradient(180deg, rgba(250,247,242,0.50) 0%, rgba(250,247,242,0) 100%);
+      backdrop-filter: blur(4px);
+    }
+
+    nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        gap: 28px;
+        padding: 14px 16px;
+      }
+      nav a {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+      }
+    }
+
+    /* ── Ornement SVG ── */
+    .ornament {
+      display: block;
+      margin: 0 auto;
+      width: 180px;
+      opacity: 0.55;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      background:
+        linear-gradient(to bottom, rgba(44,36,22,0.20) 0%, rgba(44,36,22,0.45) 35%, rgba(44,36,22,0.70) 100%),
+        url('img/image_gallerie16.jpeg') center 30%/cover no-repeat;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(184,154,106,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Border intérieure */
+    .hero-frame {
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(250,247,242,0.18);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .hero .label {
+      color: var(--gold-light);
+    }
+
+    .hero .names {
+      color: var(--ivory);
+    }
+
+    .hero .ampersand {
+      color: var(--gold-light);
+    }
+
+    .hero .date-block {
+      color: rgba(250,247,242,0.65);
+    }
+
+    .hero .date-block strong {
+      color: var(--ivory);
+    }
+
+    .hero .ornament line {
+      stroke: rgba(250,247,242,0.3);
+    }
+
+    .hero .ornament circle {
+      stroke: rgba(250,247,242,0.3);
+    }
+
+    /* ── Typographie ── */
+    .label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .names {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      color: var(--dark);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+    }
+
+    .names em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .ampersand {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--gold-light);
+      margin: 4px 0;
+      line-height: 1;
+    }
+
+    .divider {
+      margin: 36px auto;
+    }
+
+    /* Date & lieu */
+    .date-block {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    .date-block strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── Section programme ── */
+    .programme {
+      padding: 100px 24px;
+      text-align: center;
+      background: var(--cream);
+      position: relative;
+      animation: fadeUp 1.6s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .programme::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(184,154,106,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .programme-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .programme-list {
+      max-width: 500px;
+      margin: 48px auto 0;
+    }
+
+    .programme-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 32px;
+      margin-bottom: 14px;
+      background: var(--ivory);
+      border: 1px solid rgba(184,154,106,0.10);
+      text-align: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.4s ease;
+    }
+
+    .programme-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 6px 24px rgba(184,154,106,0.10);
+    }
+
+    .programme-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 76px;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+
+    .programme-desc {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+    }
+
+    .programme-desc strong {
+      display: block;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 640px) {
+      .programme {
+        padding: 80px 16px;
+      }
+      .programme-item {
+        padding: 18px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .programme-item:hover {
+        transform: translateY(-2px);
+      }
+      .programme-time {
+        font-size: 1.3rem;
+        min-width: auto;
+      }
+    }
+
+    /* ── Section invitation ── */
+    .invitation {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+      animation: fadeUp 1.6s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .invitation p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 2;
+      margin-bottom: 20px;
+    }
+
+    .invitation .verse {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 3vw, 1.65rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--dark);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .invitation .verse-ref {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .invitation p.normal {
+      font-style: normal;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-light);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .cta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dark);
+      border: 1px solid var(--gold);
+      padding: 16px 48px;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.45s ease;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+      z-index: 0;
+    }
+
+    .cta-btn:hover {
+      color: var(--ivory);
+    }
+
+    .cta-btn:hover::before {
+      transform: scaleX(1);
+    }
+
+    .cta-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 40px 24px 48px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--gold-light);
+      text-transform: uppercase;
+    }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Gallery ── */
+    .gallery {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+      text-align: center;
+      animation: fadeUp 1.6s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 2px;
+      aspect-ratio: 1;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 0.15;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(44,36,22,0.92);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border: 1px solid rgba(184,154,106,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      color: var(--gold-light);
+      font-size: 2rem;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1;
+      transition: color 0.3s ease;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-close:hover {
+      color: var(--ivory);
+    }
+
+    /* ── Gallery responsive ── */
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .lightbox {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        padding: 60px 16px 80px;
+      }
+      .gallery-grid {
+        gap: 6px;
+      }
+      .lightbox {
+        padding: 12px;
+      }
+      .lightbox-close {
+        top: 12px;
+        right: 16px;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .hero-frame {
+        inset: 14px;
+      }
+      .invitation {
+        padding: 60px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════ NAV ════════════════ -->
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#invitation">Invitation</a>
+    <a href="#programme">Programme</a>
+    <a href="#galerie">Galerie</a>
+  </nav>
+
+  <!-- ════════════════ HERO ════════════════ -->
+  <section class="hero" id="accueil">
+    <div class="hero-frame"></div>
+    <div class="hero-inner">
+
+      <p class="label">Mariage</p>
+
+      <!-- Ornement haut -->
+      <svg class="ornament divider" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="0" y1="12" x2="88" y2="12" stroke-width="0.8"/>
+        <circle cx="120" cy="12" r="4" stroke-width="0.8"/>
+        <circle cx="104" cy="12" r="2" stroke-width="0.8"/>
+        <circle cx="136" cy="12" r="2" stroke-width="0.8"/>
+        <line x1="152" y1="12" x2="240" y2="12" stroke-width="0.8"/>
+      </svg>
+
+      <h1 class="names">
+        Simeon
+        <span class="ampersand">&amp;</span>
+        Jaurelle
+      </h1>
+
+      <!-- Ornement bas -->
+      <svg class="ornament" style="margin-top:28px;margin-bottom:36px;" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="0" y1="12" x2="88" y2="12" stroke-width="0.8"/>
+        <circle cx="120" cy="12" r="4" stroke-width="0.8"/>
+        <circle cx="104" cy="12" r="2" stroke-width="0.8"/>
+        <circle cx="136" cy="12" r="2" stroke-width="0.8"/>
+        <line x1="152" y1="12" x2="240" y2="12" stroke-width="0.8"/>
+      </svg>
+
+      <p class="date-block"><strong>Samedi 6 Juin 2026</strong></p>
+      <p class="date-block" style="margin-top:6px;">1630 boulevard Saint-Jean-Baptiste — Montréal, Québec, H1B 4A4</p>
+
+    </div>
+  </section>
+
+  <!-- ════════════════ INVITATION ════════════════ -->
+  <section class="invitation" id="invitation">
+
+    <!-- ── Verset ── -->
+    <p class="verse">
+      « Celui qui trouve une femme trouve le bonheur&nbsp;;<br />
+      c'est une faveur qu'il obtient de l'Éternel. »
+    </p>
+    <p class="verse-ref">— Proverbes 18:22</p>
+
+    <svg class="ornament" style="margin:36px auto;" viewBox="0 0 120 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="6" x2="44" y2="6" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="60" cy="6" r="3" stroke="#b89a6a" stroke-width="0.8"/>
+      <line x1="76" y1="6" x2="120" y2="6" stroke="#b89a6a" stroke-width="0.8"/>
+    </svg>
+
+    <p>
+      C'est avec une joie immense que nous vous convions<br />
+      à célébrer notre union.
+    </p>
+
+    <svg class="ornament" style="margin:28px auto;" viewBox="0 0 80 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="4" x2="30" y2="4" stroke="#b89a6a" stroke-width="0.6"/>
+      <circle cx="40" cy="4" r="2" stroke="#b89a6a" stroke-width="0.6"/>
+      <line x1="50" y1="4" x2="80" y2="4" stroke="#b89a6a" stroke-width="0.6"/>
+    </svg>
+
+    <p class="normal">
+      Entourez-vous de vos plus beaux atours et venez partager avec nous<br />
+      ce moment rare — dîner, musique et danses jusqu'au bout de la nuit.
+    </p>
+
+    <p class="normal" style="margin-top:16px;">
+      Réponse souhaitée avant le <strong style="color:var(--text);">15 juin 2025</strong>.
+    </p>
+
+    <!-- ── CTA ── -->
+    <div class="cta-wrap">
+      <span class="cta-label">Confirmez votre présence</span>
+      <!-- ✏️  Remplacez le href ci-dessous par votre lien Google Form -->
+      <a class="cta-btn" href="VOTRE_LIEN_GOOGLE_FORM_ICI" target="_blank" rel="noopener">
+        <span>Je confirme ma présence</span>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ════════════════ PROGRAMME ════════════════ -->
+  <section class="programme" id="programme">
+
+    <div class="programme-inner">
+
+      <p class="label">Programme</p>
+
+      <svg class="ornament" style="margin-bottom:32px;" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line x1="0" y1="12" x2="88" y2="12" stroke="#b89a6a" stroke-width="0.8"/>
+        <circle cx="120" cy="12" r="4" stroke="#b89a6a" stroke-width="0.8"/>
+        <circle cx="104" cy="12" r="2" stroke="#b89a6a" stroke-width="0.8"/>
+        <circle cx="136" cy="12" r="2" stroke="#b89a6a" stroke-width="0.8"/>
+        <line x1="152" y1="12" x2="240" y2="12" stroke="#b89a6a" stroke-width="0.8"/>
+      </svg>
+
+      <div class="programme-list">
+        <div class="programme-item">
+          <span class="programme-time">14h00</span>
+          <span class="programme-desc"><strong>Accueil des invités</strong>Ouverture des portes</span>
+        </div>
+
+        <div class="programme-item">
+          <span class="programme-time">15h00</span>
+          <span class="programme-desc"><strong>Cérémonie</strong>Union de nos cœurs</span>
+        </div>
+
+        <div class="programme-item">
+          <span class="programme-time">17h00</span>
+          <span class="programme-desc"><strong>Cocktail</strong>Apéritif et photos</span>
+        </div>
+
+        <div class="programme-item">
+          <span class="programme-time">19h30</span>
+          <span class="programme-desc"><strong>Dîner</strong>Repas et discours</span>
+        </div>
+
+        <div class="programme-item">
+          <span class="programme-time">22h00</span>
+          <span class="programme-desc"><strong>Soirée dansante</strong>Jusqu'au bout de la nuit</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ════════════════ GALERIE ════════════════ -->
+  <section class="gallery" id="galerie">
+
+    <p class="label">Galerie</p>
+
+    <svg class="ornament" style="margin-bottom:32px;" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="12" x2="88" y2="12" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="120" cy="12" r="4" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="104" cy="12" r="2" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="136" cy="12" r="2" stroke="#b89a6a" stroke-width="0.8"/>
+      <line x1="152" y1="12" x2="240" y2="12" stroke="#b89a6a" stroke-width="0.8"/>
+    </svg>
+
+    <div class="gallery-grid">
+      <a href="#img1" class="gallery-item"><img src="img/image_gallerie1.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img2" class="gallery-item"><img src="img/image_gallerie2.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img3" class="gallery-item"><img src="img/image_gallerie3.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img4" class="gallery-item"><img src="img/image_gallerie4.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img5" class="gallery-item"><img src="img/image_gallerie5.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img6" class="gallery-item"><img src="img/image_gallerie6.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img7" class="gallery-item"><img src="img/image_gallerie7.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img8" class="gallery-item"><img src="img/image_gallerie8.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img9" class="gallery-item"><img src="img/image_gallerie9.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img10" class="gallery-item"><img src="img/image_gallerie10.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img11" class="gallery-item"><img src="img/image_gallerie11.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img12" class="gallery-item"><img src="img/image_gallerie12.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img13" class="gallery-item"><img src="img/image_gallerie13.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img14" class="gallery-item"><img src="img/image_gallerie14.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img15" class="gallery-item"><img src="img/image_gallerie15.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img16" class="gallery-item"><img src="img/image_gallerie16.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img17" class="gallery-item"><img src="img/image_gallerie17.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img18" class="gallery-item"><img src="img/image_gallerie18.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img19" class="gallery-item"><img src="img/image_gallerie19.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img20" class="gallery-item"><img src="img/image_gallerie20.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img21" class="gallery-item"><img src="img/image_gallerie21.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img22" class="gallery-item"><img src="img/image_gallerie22.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img23" class="gallery-item"><img src="img/image_gallerie23.jpeg" alt="" loading="lazy" /></a>
+      <a href="#img24" class="gallery-item"><img src="img/image_gallerie24.jpeg" alt="" loading="lazy" /></a>
+    </div>
+
+  </section>
+
+  <!-- ── Lightboxes ── -->
+  <div class="lightbox" id="img1"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie1.jpeg" alt="" /></div>
+  <div class="lightbox" id="img2"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie2.jpeg" alt="" /></div>
+  <div class="lightbox" id="img3"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie3.jpeg" alt="" /></div>
+  <div class="lightbox" id="img4"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie4.jpeg" alt="" /></div>
+  <div class="lightbox" id="img5"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie5.jpeg" alt="" /></div>
+  <div class="lightbox" id="img6"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie6.jpeg" alt="" /></div>
+  <div class="lightbox" id="img7"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie7.jpeg" alt="" /></div>
+  <div class="lightbox" id="img8"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie8.jpeg" alt="" /></div>
+  <div class="lightbox" id="img9"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie9.jpeg" alt="" /></div>
+  <div class="lightbox" id="img10"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie10.jpeg" alt="" /></div>
+  <div class="lightbox" id="img11"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie11.jpeg" alt="" /></div>
+  <div class="lightbox" id="img12"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie12.jpeg" alt="" /></div>
+  <div class="lightbox" id="img13"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie13.jpeg" alt="" /></div>
+  <div class="lightbox" id="img14"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie14.jpeg" alt="" /></div>
+  <div class="lightbox" id="img15"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie15.jpeg" alt="" /></div>
+  <div class="lightbox" id="img16"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie16.jpeg" alt="" /></div>
+  <div class="lightbox" id="img17"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie17.jpeg" alt="" /></div>
+  <div class="lightbox" id="img18"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie18.jpeg" alt="" /></div>
+  <div class="lightbox" id="img19"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie19.jpeg" alt="" /></div>
+  <div class="lightbox" id="img20"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie20.jpeg" alt="" /></div>
+  <div class="lightbox" id="img21"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie21.jpeg" alt="" /></div>
+  <div class="lightbox" id="img22"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie22.jpeg" alt="" /></div>
+  <div class="lightbox" id="img23"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie23.jpeg" alt="" /></div>
+  <div class="lightbox" id="img24"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie24.jpeg" alt="" /></div>
+
+  <!-- ════════════════ FOOTER ════════════════ -->
+  <footer>
+    <svg class="ornament" style="margin-bottom:20px;" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="12" x2="88" y2="12" stroke="#d4b896" stroke-width="0.6"/>
+      <circle cx="120" cy="12" r="4" stroke="#d4b896" stroke-width="0.6"/>
+      <circle cx="104" cy="12" r="2" stroke="#d4b896" stroke-width="0.6"/>
+      <circle cx="136" cy="12" r="2" stroke="#d4b896" stroke-width="0.6"/>
+      <line x1="152" y1="12" x2="240" y2="12" stroke="#d4b896" stroke-width="0.6"/>
+    </svg>
+    <p>Avec tout notre amour &mdash; Simeon &amp; Jaurelle</p>
+  </footer>
+
+</body>
+</html>
