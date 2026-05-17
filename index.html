@@ -49,8 +49,9 @@
       justify-content: center;
       gap: 48px;
       padding: 20px 24px;
-      background: linear-gradient(180deg, rgba(250,247,242,0.50) 0%, rgba(250,247,242,0) 100%);
-      backdrop-filter: blur(4px);
+      background: rgba(250,247,242,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,154,106,0.12);
     }
 
     nav a {
@@ -114,8 +115,8 @@
       text-align: center;
       padding: 60px 24px;
       background:
-        linear-gradient(to bottom, rgba(44,36,22,0.20) 0%, rgba(44,36,22,0.45) 35%, rgba(44,36,22,0.70) 100%),
-        url('img/image_gallerie16.jpeg') center 30%/cover no-repeat;
+        linear-gradient(to bottom, rgba(44,36,22,0.15) 0%, rgba(44,36,22,0.40) 35%, rgba(44,36,22,0.70) 100%),
+        url('img/image_gallerie7.jpeg') center 20%/cover no-repeat;
       position: relative;
     }
 
@@ -235,9 +236,9 @@
 
     /* ── Section programme ── */
     .programme {
-      padding: 100px 24px;
+      padding: 120px 24px;
       text-align: center;
-      background: var(--cream);
+      background: #1f1a12;
       position: relative;
       animation: fadeUp 1.6s 0.3s cubic-bezier(0.22,1,0.36,1) both;
     }
@@ -245,67 +246,84 @@
     .programme::before {
       content: '';
       position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      pointer-events: none;
+    }
+
+    .programme::after {
+      content: '';
+      position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(184,154,106,0.10) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 50% 30%, rgba(184,154,106,0.06) 0%, transparent 60%);
       pointer-events: none;
     }
 
     .programme-inner {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
+    .programme .label {
+      color: var(--gold-light);
+    }
+
+    .programme .ornament line,
+    .programme .ornament circle {
+      stroke: rgba(184,154,106,0.35) !important;
+    }
+
     .programme-list {
-      max-width: 500px;
-      margin: 48px auto 0;
+      max-width: 530px;
+      margin: 56px auto 0;
     }
 
     .programme-item {
+      padding: 32px 0;
       display: flex;
       align-items: center;
-      gap: 24px;
-      padding: 22px 32px;
-      margin-bottom: 14px;
-      background: var(--ivory);
-      border: 1px solid rgba(184,154,106,0.10);
+      gap: 32px;
       text-align: left;
-      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.4s ease;
+      transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .programme-item + .programme-item {
+      border-top: 1px solid rgba(184,154,106,0.08);
     }
 
     .programme-item:hover {
-      transform: translateX(8px);
-      box-shadow: 0 6px 24px rgba(184,154,106,0.10);
+      padding-left: 16px;
     }
 
     .programme-time {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
+      font-size: 2.4rem;
+      font-weight: 300;
       color: var(--gold);
-      min-width: 76px;
-      letter-spacing: 0.03em;
-      line-height: 1.2;
+      min-width: 96px;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
     }
 
     .programme-desc {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 300;
-      color: var(--text-light);
-      line-height: 1.5;
-      letter-spacing: 0.02em;
+      color: rgba(250,247,242,0.45);
+      line-height: 1.6;
+      letter-spacing: 0.03em;
     }
 
     .programme-desc strong {
       display: block;
-      color: var(--text);
-      font-weight: 500;
-      font-size: 0.95rem;
+      color: rgba(250,247,242,0.8);
+      font-weight: 400;
+      font-size: 1rem;
       margin-bottom: 2px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
     }
 
     @media (max-width: 640px) {
@@ -313,16 +331,16 @@
         padding: 80px 16px;
       }
       .programme-item {
-        padding: 18px 20px;
+        padding: 24px 0;
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
       }
       .programme-item:hover {
-        transform: translateY(-2px);
+        padding-left: 8px;
       }
       .programme-time {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
         min-width: auto;
       }
     }
@@ -473,13 +491,14 @@
       overflow: hidden;
       cursor: pointer;
       border-radius: 2px;
-      aspect-ratio: 1;
+      aspect-ratio: 3/4;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
       transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
     }
@@ -663,19 +682,14 @@
       <line x1="50" y1="4" x2="80" y2="4" stroke="#b89a6a" stroke-width="0.6"/>
     </svg>
 
-    <p class="normal">
-      Entourez-vous de vos plus beaux atours et venez partager avec nous<br />
-      ce moment rare — dîner, musique et danses jusqu'au bout de la nuit.
-    </p>
-
     <p class="normal" style="margin-top:16px;">
-      Réponse souhaitée avant le <strong style="color:var(--text);">15 juin 2025</strong>.
+      Réponse souhaitée avant le <strong style="color:var(--text);">6 juin 2026</strong>.
     </p>
 
     <!-- ── CTA ── -->
     <div class="cta-wrap">
       <span class="cta-label">Confirmez votre présence</span>
-      <!-- ✏️  Remplacez le href ci-dessous par votre lien Google Form -->
+      <span class="cta-label" style="color:var(--text);font-size:0.65rem;letter-spacing:0.15em;margin-top:-10px;">Inscription obligatoire</span>
       <a class="cta-btn" href="VOTRE_LIEN_GOOGLE_FORM_ICI" target="_blank" rel="noopener">
         <span>Je confirme ma présence</span>
       </a>
@@ -757,7 +771,6 @@
       <a href="#img12" class="gallery-item"><img src="img/image_gallerie12.jpeg" alt="" loading="lazy" /></a>
       <a href="#img13" class="gallery-item"><img src="img/image_gallerie13.jpeg" alt="" loading="lazy" /></a>
       <a href="#img14" class="gallery-item"><img src="img/image_gallerie14.jpeg" alt="" loading="lazy" /></a>
-      <a href="#img15" class="gallery-item"><img src="img/image_gallerie15.jpeg" alt="" loading="lazy" /></a>
       <a href="#img16" class="gallery-item"><img src="img/image_gallerie16.jpeg" alt="" loading="lazy" /></a>
       <a href="#img17" class="gallery-item"><img src="img/image_gallerie17.jpeg" alt="" loading="lazy" /></a>
       <a href="#img18" class="gallery-item"><img src="img/image_gallerie18.jpeg" alt="" loading="lazy" /></a>
@@ -786,7 +799,6 @@
   <div class="lightbox" id="img12"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie12.jpeg" alt="" /></div>
   <div class="lightbox" id="img13"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie13.jpeg" alt="" /></div>
   <div class="lightbox" id="img14"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie14.jpeg" alt="" /></div>
-  <div class="lightbox" id="img15"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie15.jpeg" alt="" /></div>
   <div class="lightbox" id="img16"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie16.jpeg" alt="" /></div>
   <div class="lightbox" id="img17"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie17.jpeg" alt="" /></div>
   <div class="lightbox" id="img18"><a href="#galerie" class="lightbox-close">&times;</a><img src="img/image_gallerie18.jpeg" alt="" /></div>
