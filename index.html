@@ -66,6 +66,45 @@
       position: relative;
     }
 
+    /* ── Section cadeaux ── */
+    .gifts {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+      text-align: center;
+      animation: fadeUp 1.6s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .gifts p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 2;
+      margin-bottom: 16px;
+    }
+
+    .gifts .normal {
+      font-style: normal;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-light);
+      line-height: 1.9;
+      letter-spacing: 0.02em;
+    }
+
+    .gifts .normal strong {
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    @media (max-width: 480px) {
+      .gifts {
+        padding: 60px 24px 80px;
+      }
+    }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -616,6 +655,7 @@
     <a href="#invitation">Invitation</a>
     <a href="#programme">Programme</a>
     <a href="#galerie">Galerie</a>
+    <a href="#cadeaux">Cadeaux</a>
   </nav>
 
   <!-- ════════════════ HERO ════════════════ -->
@@ -781,6 +821,38 @@
       <a href="#img23" class="gallery-item"><img src="img/image_gallerie23.jpeg" alt="" loading="lazy" /></a>
       <a href="#img24" class="gallery-item"><img src="img/image_gallerie24.jpeg" alt="" loading="lazy" /></a>
     </div>
+
+  </section>
+
+  <!-- ════════════════ CADEAUX ════════════════ -->
+  <section class="gifts" id="cadeaux">
+
+    <p class="label">Cadeaux</p>
+
+    <svg class="ornament" style="margin-bottom:32px;" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="12" x2="88" y2="12" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="120" cy="12" r="4" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="104" cy="12" r="2" stroke="#b89a6a" stroke-width="0.8"/>
+      <circle cx="136" cy="12" r="2" stroke="#b89a6a" stroke-width="0.8"/>
+      <line x1="152" y1="12" x2="240" y2="12" stroke="#b89a6a" stroke-width="0.8"/>
+    </svg>
+
+    <p>
+      Votre présence à nos côtés en ce jour si précieux<br />
+      est, pour nous, le plus beau des cadeaux.
+    </p>
+
+    <svg class="ornament" style="margin:20px auto;" viewBox="0 0 80 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="4" x2="30" y2="4" stroke="#b89a6a" stroke-width="0.6"/>
+      <circle cx="40" cy="4" r="2" stroke="#b89a6a" stroke-width="0.6"/>
+      <line x1="50" y1="4" x2="80" y2="4" stroke="#b89a6a" stroke-width="0.6"/>
+    </svg>
+
+    <p class="normal">
+      Si vous souhaitez néanmoins contribuer à l'aventure qui commence,<br />
+      nous privilégions les cadeaux en espèces, qui nous aideront<br />
+      à construire notre nouveau foyer. Votre générosité nous touche infiniment.
+    </p>
 
   </section>
 
